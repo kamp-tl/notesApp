@@ -22,7 +22,7 @@ const CreatePage = () => {
 
     setLoading(true)
     try {
-      await api.post("/notes", {
+      await api.post("https://notesapp-gvf1.onrender.com/notes", {
         title,
         content,
       })

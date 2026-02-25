@@ -14,7 +14,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchNotes = async () => {
             try {
-                const res = await api.get("/notes");
+                const res = await api.get("https://notesapp-gvf1.onrender.com/notes");
                 setNotes(res.data)
             } catch (error) {
                 console.error(`error: ${error.message}`)
@@ -30,7 +30,7 @@ const HomePage = () => {
     const handleDeleteNote = async () => {
         if (!selectedNote) return;
         try {
-            await api.delete(`/notes/${selectedNote._id}`);
+            await api.delete(`https://notesapp-gvf1.onrender.com/notes/${selectedNote._id}`);
             setNotes((prev) => prev.filter(note => note._id !== selectedNote._id));
             toast.success("Note Deleted Successfully");
             setSelectedNote(null);

@@ -16,7 +16,7 @@ const NoteDetailPage = () => {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await api.get(`/notes/${id}`)
+        const res = await api.get(`https://notesapp-gvf1.onrender.com/notes/${id}`)
         setNote(res.data)
       } catch (err) {
         console.error("error in fetching note",err)
@@ -30,7 +30,7 @@ const NoteDetailPage = () => {
   const handleDelete = async () => {
     if (!selectedNote) return;
     try {
-        await api.delete(`/notes/${selectedNote._id}`);
+        await api.delete(`https://notesapp-gvf1.onrender.com/notes/${selectedNote._id}`);
         setNote((prev) => prev.filter(note => note._id !== selectedNote._id));
         toast.success("Note Deleted Successfully");
         setSelectedNote(null);
@@ -47,7 +47,7 @@ const NoteDetailPage = () => {
     }
     setSaving(true)
     try {
-      await api.put(`/notes/${id}`,note)
+      await api.put(`https://notesapp-gvf1.onrender.com/notes/${id}`,note)
       toast.success("note update successful")
       navigate("/")
     }catch(err) {
