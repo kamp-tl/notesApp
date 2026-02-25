@@ -19,7 +19,7 @@ const NoteDetailPage = () => {
         const res = await api.get(`/notes/${id}`)
         setNote(res.data)
       } catch (err) {
-        console.error("error in fetching note",error)
+        console.error("error in fetching note",err)
         toast.error("failed to fetch note")
       } finally {
         setLoading(false)
@@ -28,16 +28,18 @@ const NoteDetailPage = () => {
       fetchNote()
   },[id])
   const handleDelete = async () => {
-    if(window.confirm("Are you sure?")) return;
+    if (!selectedNote) return;
     try {
-      await api.delete(`/notes/${id}`);
-      toast.success("Note Deleted")
-      navigate("/")
-    }catch (err) {
-      console.log("error deleting", err.message)
-      toast.error("failed to delete")
+        await api.delete(`/notes/${selectedNote._id}`);
+        setNote((prev) => prev.filter(note => note._id !== selectedNote._id));
+        toast.success("Note Deleted Successfully");
+        setSelectedNote(null);
+        document.getElementById('delete_modal_global').close();
+    } catch (err) {
+        toast.error("failed to delete");
+        console.error("failed to delete", err);
     }
-  }
+}
   const handleSave= async () => {
     if(!note.title.trim() || !note.content.trim()) {
       toast.error("add title or content")
@@ -112,6 +114,29 @@ const NoteDetailPage = () => {
         </div>
       </div>
     </div>
+    <dialog id="delete_modal_global" className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Delete Note</h3>
+                    <p className="py-4">Are you sure you want to delete <span className="font-semibold">{selectedNote?.title}</span>? This action cannot be undone.</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <button className="btn mr-2" onClick={() => setSelectedNote(null)}>Cancel</button>
+                            <button
+                                className="btn btn-error"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleDelete();
+                                }}
+                            >
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button onClick={() => setSelectedNote(null)}>close</button>
+                </form>
+            </dialog>
    </div>
   )
 }
