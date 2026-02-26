@@ -8,7 +8,7 @@ import {connectDB} from './config/db.js'
 import {logReq} from './middlewares/logReq.js';
 
 const app = express(); 
-app.use(cors({origin:'https://notes-app-three-kappa-87.vercel.app/'}));
+app.use(cors());
 
 const PORT = process.env.PORT || 5001;
 
