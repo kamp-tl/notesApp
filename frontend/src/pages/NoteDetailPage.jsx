@@ -28,7 +28,7 @@ const NoteDetailPage = () => {
       fetchNote()
   },[id])
   const handleDelete = async () => {
-    if(window.confirm("Are you sure?")) return;
+    if(!window.confirm("Are you sure?")) return;
     try {
         await api.delete(`https://notesapp-gvf1.onrender.com/notes/${selectedNote._id}`);
         setNote((prev) => prev.filter(note => note._id !== selectedNote._id));
