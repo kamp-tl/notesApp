@@ -1,0 +1,22 @@
+{
+  "name": "notesapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node src/server.js --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamp-tl/notesApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kamp-tl/notesApp/issues"
+  },
+  "homepage": "https://github.com/kamp-tl/notesApp#readme"
+}
