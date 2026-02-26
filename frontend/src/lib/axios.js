@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL:"http://localhost:5173/api",
+    baseURL:"https://notesapp-gvf1.onrender.com/api",
 })
 
 export default api
