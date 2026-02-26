@@ -34,7 +34,7 @@ const NoteDetailPage = () => {
         setNote((prev) => prev.filter(note => note._id !== selectedNote._id));
         toast.success("Note Deleted Successfully");
         setSelectedNote(null);
-        document.getElementById('delete_modal_global').close();
+        //document.getElementById('delete_modal_global').close();
     } catch (err) {
         toast.error("failed to delete");
         console.error("failed to delete", err);
