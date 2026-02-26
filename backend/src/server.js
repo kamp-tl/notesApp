@@ -12,21 +12,9 @@ app.use(cors({origin:'https://notes-app-three-kappa-87.vercel.app/'}));
 
 const PORT = process.env.PORT || 5001;
 
-import path from "path";
-
-const __dirname = path.resolve();
-
 app.use(express.json())
-//app.use(logReq)
+app.use(logReq)
 app.use('/api/notes', noteRoutes)
-
-if (process.env.NODE_ENV === "development") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-    app.get(/(.*)/, (req, res) => {
-        res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
-    });
-}
 
 connectDB().then(() =>{
     app.listen(PORT, () => {
