@@ -15,6 +15,9 @@ const PORT = process.env.PORT || 5001;
 app.use(express.json())
 app.use(logReq)
 app.use('/api/notes', noteRoutes)
+app.get("/test-route", (req, res) => {
+    res.send("The server is reading this route correctly!");
+  });
 
 connectDB().then(() =>{
     app.listen(PORT, () => {
